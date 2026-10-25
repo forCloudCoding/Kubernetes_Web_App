@@ -5,9 +5,7 @@ terraform {
   }
 }
 
-provider "aws" {
-  region = "us-east-1"
-}
+
 
 # Data Source to get the default VPC ID
 data "aws_vpc" "default" {
