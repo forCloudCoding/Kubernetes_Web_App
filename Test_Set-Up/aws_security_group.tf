@@ -22,7 +22,7 @@ resource "aws_security_group" "server_1_sg" {
   ingress {
     from_port   = 22
     to_port     = 22
-    protocol    = "ssh"
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -54,15 +54,15 @@ resource "aws_security_group" "client_1_sg" {
   description = "Security Group for Client 1"
   vpc_id      = data.aws_vpc.default.id
 
-  #1 Ingress rules for Server 1 - for SSH Login - Accessible By "All"
+  #1 Ingress rules for Client 1 - for SSH Login - Accessible By "All"
   ingress {
     from_port   = 22
     to_port     = 22
-    protocol    = "ssh"
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  #2 Ingress rules for Server 1 - for HTTP Access - Accessible By "All"
+  #2 Ingress rules for Client 1 - for HTTP Access - Accessible By "All"
   ingress {
     from_port   = 80
     to_port     = 80
@@ -80,7 +80,7 @@ resource "aws_security_group" "client_1_sg" {
 
   # Tags for the security group
   tags = {
-    Name = "worker-nodes-sg"
+    Name = "client_1-sg"
   }
 }
 

@@ -4,7 +4,7 @@ resource "aws_instance" "server_1" {
   instance_type = "t3.medium"
 
   associate_public_ip_address = true
-  vpc_security_group_ids      = [aws_security_group.control_plane_sg.id]
+  vpc_security_group_ids      = [aws_security_group.server_1_sg.id]
 
   tags = {
     Name = "server_1"
