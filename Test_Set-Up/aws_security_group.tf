@@ -34,6 +34,24 @@ resource "aws_security_group" "server_1_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  #3 Ingress rules for Server 1 - for HTTP Access on Port No. 8080 - Accessible By "All"
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  #4 Ingress rules for Server 1 - for ICMP Access - Accessible By "All"
+  ingress {
+    description = "Allow all ICMP IPv4 traffic"
+    from_port   = -1
+    to_port     = -1
+    protocol    = "icmp"
+    cidr_blocks = ["0.0.0.0/0"] # Restrict this range in production
+  }
+
+
   # Default Egress Rule ( Outbound Traffic - all Allowed )
   egress {
     from_port   = 0
@@ -68,6 +86,23 @@ resource "aws_security_group" "client_1_sg" {
     to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  #3 Ingress rules for Client 1 - for HTTP Access on Port No. 8080 - Accessible By "All"
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  #4 Ingress rules for Client 1 - for ICMP Access - Accessible By "All"
+  ingress {
+    description = "Allow all ICMP IPv4 traffic"
+    from_port   = -1
+    to_port     = -1
+    protocol    = "icmp"
+    cidr_blocks = ["0.0.0.0/0"] # Restrict this range in production
   }
 
   # Default Egress Rule ( Outbound Traffic - all Allowed )
