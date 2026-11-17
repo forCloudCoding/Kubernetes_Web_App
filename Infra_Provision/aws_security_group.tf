@@ -58,7 +58,15 @@ resource "aws_security_group" "control_plane_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  # Default Egress Rule ( Outbound Traffic - all Allowed )
+  #6 Port 22 for EC2 Instance Connect for Control Plane - SSH - Used By "Admin"
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["18.206.107.24/29"]
+  }
+
+  #7 Default Egress Rule ( Outbound Traffic - all Allowed )
   egress {
     from_port   = 0
     to_port     = 0
@@ -110,7 +118,15 @@ resource "aws_security_group" "worker_nodes_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  # Default Egress Rule ( Outbound Traffic - all Allowed )
+  #5 Port 22 for EC2 Instance Connect for Worker Nodes - SSH - Used By "Admin"
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["18.206.107.24/29"]
+  }
+
+  #6 Default Egress Rule ( Outbound Traffic - all Allowed )
   egress {
     from_port   = 0
     to_port     = 0
