@@ -8,5 +8,5 @@ Below listed are the various stages of Development & the respective Tools to be 
 
 3. Deploying the Web-App on the Kubernetes Cluster
 
-4. Observability using Prometheur & Grafana
+4. Observability using Prometheus & Grafana
 
